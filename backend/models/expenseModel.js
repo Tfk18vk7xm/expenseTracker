@@ -32,7 +32,12 @@ const Expense = {
 
     if (search && search.trim() !== '') {
       params.push(`%${search.trim()}%`);
-      queryText += ` AND (title ILIKE $${params.length} OR notes ILIKE $${params.length})`;
+      queryText += ` AND (
+        title ILIKE $${params.length} 
+        OR COALESCE(notes, '') ILIKE $${params.length} 
+        OR category ILIKE $${params.length} 
+        OR CAST(amount AS TEXT) ILIKE $${params.length}
+      )`;
     }
 
     queryText += ` ORDER BY date DESC, created_at DESC`;
