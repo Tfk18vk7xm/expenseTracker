@@ -56,4 +56,5 @@ jobs:
       - name: Push frontend Docker image
         run: docker push leasony/expense-tracker-frontend:latest
 
-
+      - name: Trigger Render deployment
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK  }}"
