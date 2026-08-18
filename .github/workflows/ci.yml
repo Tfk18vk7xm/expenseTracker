@@ -46,7 +46,7 @@ jobs:
 
       # 8. Build frontend Docker image
       - name: Build frontend Docker image
-        run: docker build -t leasony/expense-tracker-frontend:latest ./frontend
+        run: docker build --build-arg VITE_API_URL=https://expense-tracker-backend-latest-viwx.onrender.com/api -t leasony/expense-tracker-frontend:latest ./frontend
 
       # 9. Push backend image
       - name: Push backend Docker image
